@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="col-md-6 offset-md-3">
+  <div class="card card-body bg-dark text-white mt-5">
+    <h1 class="text-center">Edit Product</h1>
+
+    <form action="{{ url_for('products.edit_product', id=products.id) }}" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="productName">Product Name:</label>
+        <input
+          type="text"
+          name="productName"
+          value="{{ products.productName }}"
+          class="form-control bg-dark text-white rounded-0"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="price">Price:</label>
+        <input
+          type="number"
+          name="price"
+          step="0.01"
+          value="{{ products.price }}"
+          class="form-control bg-dark text-white rounded-0"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="stock">Stock:</label>
+        <input
+          type="number"
+          name="stock"
+          value="{{ products.stock }}"
+          class="form-control bg-dark text-white rounded-0"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="description">Description:</label>
+        <textarea
+          name="description"
+          rows="3"
+          class="form-control bg-dark text-white rounded-0"
+          required
+        >{{ products.description }}</textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="status">Status:</label>
+        <select
+          name="status"
+          class="form-select bg-dark text-white rounded-0"
+          required
+        >
+          <option value="1" {% if products.status %}selected{% endif %}>Activo</option>
+          <option value="0" {% if not products.status %}selected{% endif %}>Inactivo</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="image">Image:</label>
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+      {% if products.image %}
+      <div class="mb-3">
+        <img src="{{ url_for('static', filename='images/' + products.image) }}" alt="{{ products.productName }}" width="120" class="rounded">
+      </div>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary w-100">Update</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+

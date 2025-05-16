@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  About Us
+{% endblock %}
+
+{% block body %}
+<div class="container p-5">
+  <div class="card bg-dark text-white">
+    <div class="card-body">
+      <h1 class="card-title">About This Project</h1>
+      <p class="card-text">
+        This is a simple Flask CRUD application using SQLAlchemy.
+        It was built to practice the basics of creating, reading, updating and deleting records from a database.
+      </p>
+      <p class="card-text">
+        Created by Pietro.
+      </p>
+      <a href="/products" class="btn btn-primary">Back</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

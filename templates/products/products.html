@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block title %} Flask App Web {% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-5 p-5">
+    <!-- MESSAGE -->
+    {% include 'partials/_message.html' %}
+
+    <!-- FORM -->
+    {% include 'products/add_products.html' %}
+  </div>
+
+  <div class="col-md-7 p-5">
+    <table class="table table-dark table-striped align-middle">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Products</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+        <tr class="{% if not product.status %}table-danger{% endif %}">
+          <td>
+            {% if product.image %}
+              <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.productName }}" width="80" height="80" class="rounded">
+            {% else %}
+              <span class="text-muted">No image</span>
+            {% endif %}
+          </td>
+          <td>{{ product.productName }}</td>
+          <td>${{ product.price }}</td>
+          <td>{{ product.stock }}</td>
+          <td>{{ product. description }}</td>
+          <td>
+            {% if product.status %}
+              <span class="badge bg-success">Activo</span>
+            {% else %}
+              <span class="badge bg-danger">Inactivo</span>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{ url_for('products.edit_product', id=product.id) }}" class="btn btn-outline-primary btn-sm">Editar</a>
+
+            <form
+              action="{{ url_for('products.delete_product', id=product.id) }}"
+              method="POST"
+              style="display: inline"
+              onsubmit="return confirm('¿Estás seguro que querés eliminar este producto?');"
+            >
+              <button type="submit" class="btn btn-outline-danger btn-sm">
+                Eliminar
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,75 @@
+<form
+  action="/products/new"
+  method="POST"
+  enctype="multipart/form-data"
+  class="card bg-black text-light"
+>
+  <div class="card-body p-4">
+    <h1 class="h5 mb-4">Add Products</h1>
+
+    <div class="mb-3">
+      <label for="fullname">Products Name:</label>
+      <input
+        type="text"
+        name="productName"
+        class="form-control rounded-0 bg-dark border-0 text-white"
+        placeholder="Product Name"
+        autofocus
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="price">Price:</label>
+      <input
+        type="text"
+        name="price"
+        class="form-control rounded-0 bg-dark border-0 text-white"
+        placeholder="Price"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="stock">Stock:</label>
+      <input
+        type="text"
+        name="stock"
+        class="form-control rounded-0 bg-dark border-0 text-white"
+        placeholder="Stock"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description">Description:</label>
+      <textarea
+        name="description"
+        rows="3"
+        class="form-control bg-dark text-white rounded-0"
+        required
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="status">Status:</label>
+      <select
+        name="status"
+        class="form-select bg-dark text-white rounded-0"
+        required
+      >
+        <option value="1">Activo</option>
+        <option value="0">Inactivo</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="image">Product Image:</label>
+      <input
+        type="file"
+        name="image"
+        class="form-control rounded-0 bg-dark border-0 text-white"
+      />
+    </div>
+
+    <button class="btn btn-primary">Save</button>
+  </div>
+</form>
